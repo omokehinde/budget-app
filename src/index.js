@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
+import { BudgetProvider } from './context/BudgetContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BudgetProvider>
+      <App />
+    </BudgetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
