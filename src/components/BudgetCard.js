@@ -16,17 +16,17 @@ function BudgetCard({ name, amount, max, gray, onAddExpenseClick }) {
                     <div className="me-3"> {name} </div>
                     <div className="d-flex align-items-baseline"> 
                         {currencyFormatter.format(amount)} 
-                        <span className="text-muted fs-6 ms-1">
+                        {max && (<span className="text-muted fs-6 ms-1">
                          / {currencyFormatter.format(max)}
-                        </span>
+                        </span>)}
                     </div>
                 </Card.Title>
-                <ProgressBar className="rounded-pill" 
+                {max && (<ProgressBar className="rounded-pill" 
                     variant={getProgressBarVariant(amount,max)} 
                     min={0}
                     max={max}
                     now={amount}
-                />
+                />)}
                 <Stack direction="horizontal" gap={2} className="mt-4">
                     <Button variant="outline-primary" className="ms-auto" 
                      onClick={onAddExpenseClick}>

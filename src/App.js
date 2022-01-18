@@ -3,7 +3,8 @@ import { Stack, Container, Button } from "react-bootstrap";
 import AddBudgetModal from "./components/AddBudgetModal";
 import AddExpenseModal from "./components/AddExpenseModal";
 import BudgetCard from "./components/BudgetCard";
-import { useBudget } from "./context/BudgetContext";
+import UncatigorizedBudgetCard from "./components/UncatigorizedBudgetCard";
+import { UNCATIGORIZED_BUDGET_ID, useBudget } from "./context/BudgetContext";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -28,12 +29,13 @@ function App() {
         alignItems: "flex-start" }}>
           {budgets.map(budget=>{
             const amount = getBudgetExpenses(budget.id).reduce(
-              (total,expenses)=>total + expenses.amount, 0
+              (total,expense)=>total + expense.amount, 0
             );
             return <BudgetCard key={budget.id} name={budget.name}
               amount={amount} max={budget.max}
               onAddExpenseClick={()=>openAddExpenseModal(budget.id)} />;
           })}
+          <UncatigorizedBudgetCard onAddExpenseClick={()=>openAddExpenseModal(UNCATIGORIZED_BUDGET_ID)} />
         </div>
     </Container>
     <AddBudgetModal show={show} handleClose={handleClose}  />
