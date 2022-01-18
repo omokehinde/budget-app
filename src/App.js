@@ -3,6 +3,7 @@ import { Stack, Container, Button } from "react-bootstrap";
 import AddBudgetModal from "./components/AddBudgetModal";
 import AddExpenseModal from "./components/AddExpenseModal";
 import BudgetCard from "./components/BudgetCard";
+import TotalBudgetCard from "./components/TotalBudgetCard";
 import UncatigorizedBudgetCard from "./components/UncatigorizedBudgetCard";
 import { UNCATIGORIZED_BUDGET_ID, useBudget } from "./context/BudgetContext";
 
@@ -35,7 +36,9 @@ function App() {
               amount={amount} max={budget.max}
               onAddExpenseClick={()=>openAddExpenseModal(budget.id)} />;
           })}
-          <UncatigorizedBudgetCard onAddExpenseClick={()=>openAddExpenseModal(UNCATIGORIZED_BUDGET_ID)} />
+          <UncatigorizedBudgetCard 
+            onAddExpenseClick={()=>openAddExpenseModal(UNCATIGORIZED_BUDGET_ID)} />
+          <TotalBudgetCard onAddExpenseClick={()=>openAddExpenseModal()}/>
         </div>
     </Container>
     <AddBudgetModal show={show} handleClose={handleClose}  />
