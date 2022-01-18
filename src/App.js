@@ -7,9 +7,14 @@ import { useBudget } from "./context/BudgetContext";
 
 function App() {
   const [show, setShow] = useState(false);
+  const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
   const handleClose = () => setShow(false);
   const handleshow = () => setShow(true);
   const { budgets, getBudgetExpenses } = useBudget();
+  function openAddExpenseModal(budgetId) {
+    handleshow();
+    setAddExpenseModalBudgetId(budgetId);
+  }
   return (
     <>
     <Container className="my-4">
@@ -26,12 +31,14 @@ function App() {
               (total,expenses)=>total + expenses.amount, 0
             );
             return <BudgetCard key={budget.id} name={budget.name}
-             amount={amount} max={budget.max} />;
+              amount={amount} max={budget.max}
+              onAddExpenseClick={()=>openAddExpenseModal(budget.id)} />;
           })}
         </div>
     </Container>
     <AddBudgetModal show={show} handleClose={handleClose}  />
-    <AddExpenseModal show={show} handleClose={handleClose}  />
+    <AddExpenseModal show={show} 
+      handleClose={handleClose} defaultBudgetId={addExpenseModalBudgetId} />
     </>
   );
 }
