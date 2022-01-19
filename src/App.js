@@ -28,6 +28,7 @@ function App() {
       <div style={{ display:"grid", 
         gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1rem", 
         alignItems: "flex-start" }}>
+          <TotalBudgetCard />
           {budgets.map(budget=>{
             const amount = getBudgetExpenses(budget.id).reduce(
               (total,expense)=>total + expense.amount, 0
@@ -38,7 +39,6 @@ function App() {
           })}
           <UncatigorizedBudgetCard 
             onAddExpenseClick={()=>openAddExpenseModal(UNCATIGORIZED_BUDGET_ID)} />
-          <TotalBudgetCard onAddExpenseClick={()=>openAddExpenseModal()}/>
         </div>
     </Container>
     <AddBudgetModal show={show} handleClose={handleClose}  />
