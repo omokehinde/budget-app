@@ -25,9 +25,9 @@ function App() {
     handleShowAddExpense();
     setAddExpenseModalBudgetId(budgetId);
   }
-  function openAddBudgetModal() {
-    handleShowAddBudget();
-  }
+  // function openAddBudgetModal() {
+  //   handleShowAddBudget();
+  // }
   function viewExpenseModal(budgetId) {
     handleShowExpenseModal();
     setViewExpenseModalBudgetId(budgetId);
@@ -56,13 +56,14 @@ function App() {
               onViewExpenseClick={()=>viewExpenseModal(budget.id)}/>;
           })}
           <UncatigorizedBudgetCard 
-            onAddExpenseClick={()=>openAddExpenseModal(UNCATIGORIZED_BUDGET_ID)} />
+            onAddExpenseClick={()=>openAddExpenseModal(UNCATIGORIZED_BUDGET_ID)}
+            onViewExpenseClick={()=>viewExpenseModal(UNCATIGORIZED_BUDGET_ID)} />
         </div>
     </Container>
     <AddBudgetModal show={showAddBudgetModal} handleClose={handleCloseAddBudgetModal}  />
     <AddExpenseModal show={showAddExpenseModal} 
       handleClose={handleCloseAddExpenseModal} defaultBudgetId={addExpenseModalBudgetId} />
-    <ViewExpenseModal show={showExpenseModal} budgetId={setViewExpenseModalBudgetId} 
+    <ViewExpenseModal show={showExpenseModal} budgetId={viewExpenseModalBudgetId} 
       handleClose={handleCloseExpenseModal} />
     </>
   );
